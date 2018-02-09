@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   //Check if User Exists
   User.findOne({
-    email: req.body.email
+    email: req.body.username
   }, function (err, user) {
     if (err) {
       return next(err);
@@ -22,7 +22,7 @@ router.post('/', function (req, res, next) {
     }
     if (user) {
       if (req.body.password == user.password) {
-      //  req.session.userId = user._id;
+        //  req.session.userId = user._id;
         return res.redirect('/home');
       } else {
         return next("Wrong Password!");
